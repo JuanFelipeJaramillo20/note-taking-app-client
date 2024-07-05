@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axiosConfig";
 
 const NoteForm = ({ fetchNotes, noteToEdit }) => {
   const [title, setTitle] = useState("");
@@ -27,7 +27,7 @@ const NoteForm = ({ fetchNotes, noteToEdit }) => {
     };
 
     axios
-      .get("http://localhost:8080/api/categories", config)
+      .get("categories-resource", config)
       .then((response) => {
         setCategories(response.data);
       })
@@ -58,14 +58,14 @@ const NoteForm = ({ fetchNotes, noteToEdit }) => {
       let response;
       if (noteToEdit) {
         response = await axios.put(
-          `http://localhost:8080/api/notes/${noteToEdit.id}`,
+          `note-resource/${noteToEdit.id}`,
           { title, content, categoryNames: selectedCategories },
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setSuccessMessage("Note updated successfully!");
       } else {
         response = await axios.post(
-          "http://localhost:8080/api/notes",
+          "note-resource",
           { title, content, categoryNames: selectedCategories },
           { headers: { Authorization: `Bearer ${token}` } }
         );

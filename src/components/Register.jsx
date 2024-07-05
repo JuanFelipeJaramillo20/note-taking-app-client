@@ -11,8 +11,8 @@ const Register = ({ onRegister }) => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await api.post("/auth/register", {
-        username,
+      const response = await api.post("register-resource", {
+        userName: username,
         password,
       });
 

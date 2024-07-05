@@ -12,7 +12,7 @@ const Login = ({ onLogin }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "/auth/login",
+        "auth-resource",
         {
           userName: "admin6",
           password: "admin",
@@ -46,7 +46,7 @@ const Login = ({ onLogin }) => {
     setErrorMessage("");
     setLoading(true);
     try {
-      const response = await axios.post("/auth/login", {
+      const response = await axios.post("auth-resource", {
         userName: username,
         password,
       });

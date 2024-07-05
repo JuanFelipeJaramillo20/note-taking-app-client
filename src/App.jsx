@@ -29,7 +29,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await api.get("/api/categories", config);
+      const response = await api.get("categories-resource", config);
       setCategories(response.data);
     } catch (error) {
       setErrorMessage(
@@ -54,7 +54,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await api.get("/api/notes", config);
+      const response = await api.get("note-resource", config);
       setNotes(response.data);
     } catch (error) {
       setErrorMessage(
@@ -79,7 +79,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await api.get("/api/notes/active", config);
+      const response = await api.get("archive-note-resource", config);
       setNotes(response.data);
     } catch (error) {
       setErrorMessage(
@@ -104,7 +104,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await api.get("/api/notes/archived", config);
+      const response = await api.get("unarchive-note-resource", config);
       setNotes(response.data);
     } catch (error) {
       setErrorMessage(
@@ -169,7 +169,7 @@ function App() {
     setLoading(true);
     try {
       await api.post(
-        "/api/notes",
+        "note-resource",
         {
           title: noteData.title,
           content: noteData.content,
@@ -203,7 +203,7 @@ function App() {
     setLoading(true);
     try {
       await api.put(
-        `/api/notes/${id}`,
+        `note-resource/${id}`,
         {
           title: noteData.title,
           content: noteData.content,
@@ -236,7 +236,7 @@ function App() {
 
     setLoading(true);
     try {
-      await api.delete(`/api/notes/${id}`, config);
+      await api.delete(`note-resource/${id}`, config);
       fetchAllNotes();
     } catch (error) {
       setErrorMessage(
@@ -261,7 +261,7 @@ function App() {
 
     setLoading(true);
     try {
-      await api.put(`/api/notes/${id}/archive`, null, config);
+      await api.put(`archive-note-resource/${id}`, null, config);
       fetchAllNotes();
     } catch (error) {
       setErrorMessage(
@@ -286,7 +286,7 @@ function App() {
 
     setLoading(true);
     try {
-      await api.put(`/api/notes/${id}/unarchive`, null, config);
+      await api.put(`unarchive-note-resource/${id}`, null, config);
       fetchAllNotes();
     } catch (error) {
       setErrorMessage(
@@ -421,9 +421,9 @@ function App() {
             <span className="text-orange-400">Loading...</span>
           </div>
         )}
-        {errorMessage && (
+        {/*{errorMessage && (
           <div className="text-red-500 mb-4">{errorMessage}</div>
-        )}
+        )}*/}
         {!loading && viewComponent}
       </main>
     </div>
